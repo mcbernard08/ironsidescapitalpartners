@@ -1,224 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Principles — Ironsides Capital Partners</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      width: 100%; height: 100%;
-      background: #f7f5f2;
-      font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 300;
-      color: #3a3632;
-    }
-
-    .page {
-      min-height: 100vh;
-      padding: 32px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    /* ── TOP LEFT: firm name + page title ── */
-    .top-left {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      margin-bottom: 64px;
-    }
-
-    .firm-name {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #3a3632;
-    }
-
-    .page-title {
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #3a3632;
-    }
-
-    /* ── CONTENT ── */
-    .content {
-      flex: 1;
-      max-width: 540px;
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-    }
-
-    .principle {
-      display: flex;
-      flex-direction: column;
-      border-top: 1px solid #d8d4ce;
-      padding-top: 16px;
-      gap: 0;
-    }
-
-    .principle-heading {
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      color: #3a3632;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 16px;
-      user-select: none;
-      transition: opacity 0.15s;
-    }
-    .principle-heading:hover { opacity: 0.55; }
-
-    .principle-heading .toggle {
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1;
-      color: #9a9590;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-      margin-left: 24px;
-    }
-
-    .principle-heading.open .toggle {
-      transform: rotate(45deg);
-    }
-
-    .principle-body {
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.75;
-      color: #3a3632;
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-      padding-bottom: 0;
-    }
-
-    .principle-body.open {
-      max-height: 300px;
-      opacity: 1;
-      padding-bottom: 20px;
-    }
-
-    /* ── FOOTER ROW ── */
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 80px;
-      padding-bottom: 4px;
-    }
-
-    .close-btn {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #3a3632;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: inherit;
-      transition: opacity 0.15s;
-    }
-    .close-btn:hover { opacity: 0.5; }
-
-    .footer-right {
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #9a9590;
-    }
-
-    @media (max-width: 600px) {
-      .page { padding: 28px 24px; }
-      .top-left { margin-bottom: 40px; }
-      .content { max-width: 100%; gap: 0; }
-      .principle-heading { font-size: 12px; padding-bottom: 14px; }
-      .principle-body { font-size: 12px; line-height: 1.7; }
-      .footer-row { margin-top: 48px; }
-    }
-  </style>
+    <title>Principles</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-
-  <div class="page">
-
-    <!-- Top left -->
-    <div class="top-left">
-      <div class="firm-name">Ironsides Capital Partners</div>
-      <div class="page-title">Principles</div>
+    <h1>Our Principles</h1>
+    <div class="principle">
+        <h2>Principle 1</h2>
+        <button class="expandable">Expand</button>
+        <div class="expanded-content" style="display: none;">
+            <p>Details about principle 1...</p>
+            <button onclick="window.location.href='index.html';">Close</button>
+        </div>
     </div>
-
-    <!-- Content -->
-    <div class="content">
-
-      <div class="principle">
-        <div class="principle-heading" onclick="toggle(this)">We invest where the mission and the market converge.<span class="toggle">+</span></div>
-        <div class="principle-body">The most durable defense companies are not built by chasing contracts — they are built by founders who understand the warfighter's problem and have the technical depth to solve it. We look for that rare combination: mission clarity and commercial instinct in the same team.</div>
-      </div>
-
-      <div class="principle">
-        <div class="principle-heading" onclick="toggle(this)">The procurement window is open. We move while it is.<span class="toggle">+</span></div>
-        <div class="principle-body">OTA authority, SBIR reform, and sustained pressure on legacy primes have created a generational opening for startups to win DoD business at speed. We invest at the moment of first traction — before a program of record, when the right partner and the right capital make the difference.</div>
-      </div>
-
-      <div class="principle">
-        <div class="principle-heading" onclick="toggle(this)">Attritable beats exquisite.<span class="toggle">+</span></div>
-        <div class="principle-body">Modern conflict has exposed a structural truth: scarce, expensive systems cannot be fielded at the pace and scale peer competition demands. We back companies building affordable, producible capabilities — systems that can be lost without consequence and deployed without ceremony.</div>
-      </div>
-
-      <div class="principle">
-        <div class="principle-heading" onclick="toggle(this)">Dual-use is the alpha.<span class="toggle">+</span></div>
-        <div class="principle-body">The strongest defense businesses are built on technology with commercial pull. We seek founders who can serve both markets — unlocking faster revenue cycles, broader strategic optionality, and a more resilient path to scale.</div>
-      </div>
-
-      <div class="principle">
-        <div class="principle-heading" onclick="toggle(this)">We are owners, not observers.<span class="toggle">+</span></div>
-        <div class="principle-body">We bring operating experience in defense acquisition, government contracting, and technology development to every partnership. We help founders navigate the customer, accelerate the contract, and build the team — because we have done it ourselves.</div>
-      </div>
-
+    <div class="principle">
+        <h2>Principle 2</h2>
+        <button class="expandable">Expand</button>
+        <div class="expanded-content" style="display: none;">
+            <p>Details about principle 2...</p>
+            <button onclick="window.location.href='index.html';">Close</button>
+        </div>
     </div>
-
-    <!-- Footer -->
-    <div class="footer-row">
-      <button class="close-btn" onclick="window.location.href='index.html'">Close</button>
-      <div class="footer-right">Ironsides Capital Partners</div>
+    <div class="principle">
+        <h2>Principle 3</h2>
+        <button class="expandable">Expand</button>
+        <div class="expanded-content" style="display: none;">
+            <p>Details about principle 3...</p>
+            <button onclick="window.location.href='index.html';">Close</button>
+        </div>
     </div>
-
-  </div>
-
-  <script>
-    function toggle(heading) {
-      const body = heading.nextElementSibling;
-      const isOpen = heading.classList.contains('open');
-      // Close all
-      document.querySelectorAll('.principle-heading').forEach(h => {
-        h.classList.remove('open');
-        h.nextElementSibling.classList.remove('open');
-      });
-      // Open clicked if it wasn't already open
-      if (!isOpen) {
-        heading.classList.add('open');
-        body.classList.add('open');
-      }
-    }
-  </script>
-
+    <script>
+        document.querySelectorAll('.expandable').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                    button.textContent = 'Collapse';
+                } else {
+                    content.style.display = 'none';
+                    button.textContent = 'Expand';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

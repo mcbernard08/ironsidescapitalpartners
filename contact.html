@@ -1,135 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — Ironsides Capital Partners</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      background: #f7f5f2;
-      font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 300;
-      color: #3a3632;
-    }
-
-    .page {
-      position: fixed;
-      inset: 0;
-      padding: 32px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .top-left {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .firm-name {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #3a3632;
-    }
-
-    .firm-location {
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #3a3632;
-    }
-
-    .middle { flex: 1; }
-
-    .bottom {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .contact-lines {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .contact-line {
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.6;
-      color: #3a3632;
-    }
-
-    .contact-line a {
-      color: #3a3632;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: opacity 0.15s;
-    }
-    .contact-line a:hover { opacity: 0.5; }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .close-btn {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #3a3632;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      cursor: pointer;
-      transition: opacity 0.15s;
-      background: none;
-      border: none;
-      font-family: inherit;
-    }
-    .close-btn:hover { opacity: 0.5; }
-
-    .disclosure {
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #9a9590;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-    .disclosure:hover { opacity: 0.6; }
-
-    @media (max-width: 600px) {
-      .page { padding: 28px 24px; }
-      .contact-line { font-size: 12px; }
-      .contact-line a { word-break: break-all; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="page">
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Get in Touch</h2>
+            <p>If you have any questions, feel free to reach out to us!</p>
+            <form action="/submit" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
 
-    <div class="top-left">
-      <div class="firm-name">Ironsides Capital Partners</div>
-      <div class="firm-location">Alexandria, Virginia</div>
-    </div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
-    <div class="middle"></div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
 
-    <div class="bottom">
-      <div class="contact-lines">
-        <div class="contact-line">Media and press inquiries: <a href="/cdn-cgi/l/email-protection#750507100606351c071a1b061c1110061614051c011419051407011b1007065b161a18"><span class="__cf_email__" data-cfemail="2e5e5c4b5d5d6e475c41405d474a4b5d4d4f5e475a4f425e4f5c5a404b5c5d004d4143">[email&#160;protected]</span></a></div>
-        <div class="contact-line">General correspondence: <a href="/cdn-cgi/l/email-protection#375e595158775e455859445e5352445456475e43565b47564543595245441954585a"><span class="__cf_email__" data-cfemail="8ae3e4ece5cae3f8e5e4f
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+        <section>
+            <h2>Contact Information</h2>
+            <p>Email us at: <a href="mailto:info@ironsidescapitalpartners.com">info@ironsidescapitalpartners.com</a></p>
+            <p>Phone: <a href="tel:+1234567890">+1-234-567-890</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Ironsides Capital Partners. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -229,34 +229,63 @@
       rotX += 0.10 * dt;
       floatY = Math.sin(ts * 0.0007) * 0.03;
 
-      const R = Math.min(window.innerWidth, window.innerHeight) * 0.13;
+      // Breathing — slow sine oscillation between 0.85x and 1.15x radius
+      const breath = 1 + Math.sin(ts * 0.0006) * 0.15;
+      const R = Math.min(window.innerWidth, window.innerHeight) * 0.13 * breath;
+
+      // Line connection threshold in screen pixels
+      const LINE_DIST = R * 0.52;
 
       // Fill background
       ctx.fillStyle = '#f7f5f2';
       ctx.fillRect(0, 0, W, H);
 
-      // Project and sort by depth
+      // Project all points
       const projected = pts.map(([px, py, pz, dotR]) => {
         let [x, y, z] = rotateY(px, py, pz, rotY);
         [x, y, z]     = rotateX(x, y, z, rotX);
         y += floatY;
-        // Simple perspective
         const fov   = 6;
         const scale = fov / (fov + z);
         const sx    = cx + x * R * scale;
         const sy    = cy + y * R * scale;
-        const depth = (z + 1.5) / 3; // 0..1, closer = higher
+        const depth = (z + 1.5) / 3;
         return { sx, sy, scale, dotR, depth };
       });
 
-      // Sort back-to-front so nearer dots paint over far ones
+      // Sort back-to-front
       projected.sort((a, b) => a.depth - b.depth);
 
-      // Draw
+      // Draw connecting lines first (behind dots)
+      // Only check surface points (first TOTAL) for performance
+      const surfaceOnly = projected.slice(0, TOTAL);
+      for (let i = 0; i < surfaceOnly.length; i++) {
+        const a = surfaceOnly[i];
+        for (let j = i + 1; j < surfaceOnly.length; j++) {
+          const b = surfaceOnly[j];
+          const dx = a.sx - b.sx;
+          const dy = a.sy - b.sy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < LINE_DIST) {
+            // Fade line opacity by distance and depth
+            const avgDepth = (a.depth + b.depth) / 2;
+            const fadeByDist = 1 - dist / LINE_DIST;
+            const alpha = fadeByDist * avgDepth * 0.35;
+            const grey = Math.round(80 - avgDepth * 30);
+            ctx.beginPath();
+            ctx.moveTo(a.sx, a.sy);
+            ctx.lineTo(b.sx, b.sy);
+            ctx.strokeStyle = `rgba(${grey}, ${grey}, ${grey}, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw dots on top
       for (const { sx, sy, scale, dotR, depth } of projected) {
-        // Depth-based opacity and color
         const alpha = 0.18 + depth * 0.72;
-        const grey  = Math.round(58 - depth * 28); // darker in front
+        const grey  = Math.round(58 - depth * 28);
         ctx.beginPath();
         ctx.arc(sx, sy, dotR * scale * 1.1, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${grey}, ${grey - 2}, ${grey - 4}, ${alpha})`;
